@@ -236,7 +236,10 @@
         </div>
 
         <div class="checkout-wrap">
-          <form class="checkout" onsubmit="sendOrder(event)">
+          <form class="checkout" action="https://formspree.io/f/xqewjznk" method="POST">
+            <input type="hidden" name="_subject" value="New order from Kids Market CZ">
+            <input type="hidden" name="_captcha" value="false">
+            
             <div class="form-grid">
               <div class="field"><label for="name" data-key="nameLabel">Jméno</label><input id="name" required placeholder="Jan Novák" /></div>
               <div class="field"><label for="phone" data-key="phoneLabel">Telefon</label><input id="phone" required placeholder="+420 777 123 456" /></div>
@@ -550,7 +553,7 @@
       }).join("\n");
 
       const text = `${t("orderTitle")}\n${cartText}\n\n${t("total")}: ${totals.total} Kč\n${t("deliveryLabel")}: ${delivery}\n${t("paymentLabel")}: ${payment}\n\n${t("nameLabel")}: ${name}\n${t("phoneLabel")}: ${phone}\nEmail: ${email}\n${t("addressLabel")}: ${address}\n${t("noteLabel")}: ${note || "-"}`;
-      window.open(`https://wa.me/420606034397?text=${encodeURIComponent(text)}`, "_blank");
+      window.open(`https://wa.me/420606034397?text=Dobrý den, mám zájem o objednávku z Kids Market CZ?text=${encodeURIComponent(text)}`, "_blank");
     }
 
     setLang(currentLang);
