@@ -237,18 +237,33 @@
 
         <div class="checkout-wrap">
           <form class="checkout" action="https://formspree.io/f/xqewjznk" method="POST">
-            <input type="hidden" name="_subject" value="New order from Kids Market CZ">
-            <input type="hidden" name="_captcha" value="false">
-            
-            <div class="form-grid">
-              <div class="field"><label for="name" data-key="nameLabel">Jméno</label><input id="name" required placeholder="Jan Novák" /></div>
-              <div class="field"><label for="phone" data-key="phoneLabel">Telefon</label><input id="phone" required placeholder="+420 777 123 456" /></div>
-              <div class="field"><label for="email" data-key="emailLabel">Email</label><input id="email" type="email" required placeholder="email@example.cz" /></div>
-              <div class="field"><label for="delivery" data-key="deliveryLabel">Doprava</label><select id="delivery" onchange="renderCart()"><option value="zasilkovna">Zásilkovna — 79 Kč</option><option value="kuryr">Kurýr — 119 Kč</option></select></div>
-              <div class="field"><label for="payment" data-key="paymentLabel">Platba</label><select id="payment" onchange="renderCart()"><option value="dobirka">Dobírka — +39 Kč</option><option value="online">Online platba — placeholder</option></select></div>
-              <div class="field full"><label for="address" data-key="addressLabel">Adresa doručení / pobočka Zásilkovny</label><input id="address" required placeholder="Ulice, město, PSČ nebo pobočka Zásilkovny" /></div>
-              <div class="field full"><label for="note" data-key="noteLabel">Poznámka</label><textarea id="note" placeholder="Např. prosím o potvrzení dostupnosti, chci 2 kusy, preferuji Zásilkovnu..."></textarea></div>
-            </div>
+          <input type="hidden" name="_subject" value="New order from Kids Market CZ">
+          <input type="hidden" name="_captcha" value="false">
+
+          <div class="form-grid">
+           <div class="field"><label for="name" data-key="nameLabel">Jméno</label><input id="name" name="customer_name" required placeholder="Jan Novák" /></div>
+           <div class="field"><label for="phone" data-key="phoneLabel">Telefon</label><input id="phone" name="customer_phone" required placeholder="+420 777 123 456" /></div>
+           <div class="field"><label for="email" data-key="emailLabel">Email</label><input id="email" name="customer_email" type="email" required placeholder="email@example.cz" /></div>
+
+           <div class="field">
+            <label for="delivery" data-key="deliveryLabel">Doprava</label>
+            <select id="delivery" name="delivery_method" onchange="renderCart()">
+             <option value="Zásilkovna — 79 Kč">Zásilkovna — 79 Kč</option>
+             <option value="Kurýr — 119 Kč">Kurýr — 119 Kč</option>
+            </select>
+           </div>
+
+           <div class="field">
+            <label for="payment" data-key="paymentLabel">Platba</label>
+            <select id="payment" name="payment_method" onchange="renderCart()">
+              <option value="Dobírka — +39 Kč">Dobírka — +39 Kč</option>
+              <option value="Online platba — placeholder">Online platba — placeholder</option>
+            </select>
+           </div>
+
+           <div class="field full"><label for="address" data-key="addressLabel">Adresa doručení / pobočka Zásilkovny</label><input id="address" name="delivery_address" required placeholder="Ulice, město, PSČ nebo pobočka Zásilkovny" /></div>
+           <div class="field full"><label for="note" data-key="noteLabel">Poznámka</label><textarea id="note" name="customer_note" placeholder="Např. prosím o potvrzení dostupnosti, chci 2 kusy, preferuji Zásilkovnu..."></textarea></div>
+          </div>
             <div class="notice" data-key="orderNotice">Po odeslání se otevře WhatsApp. Objednávku ručně potvrdíme.</div>
             <button class="btn btn-green" type="submit" style="width:100%;" data-key="sendOrder">Odeslat objednávku přes WhatsApp</button>
           </form>
