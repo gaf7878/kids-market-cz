@@ -48,7 +48,7 @@
     .nav { min-height: 68px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
     .logo { display: flex; align-items: center; gap: 10px; font-weight: 900; font-size: 24px; color: var(--blue); }
     .logo-mark { background: var(--yellow); color: var(--blue); width: 42px; height: 42px; border-radius: 12px; display: grid; place-items: center; }
-    .nav-actions { display: flex; align-items: center; gap: 10px; }
+    .nav-actions { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; justify-content: flex-end; }
     .lang-btn { border: 1px solid var(--border); background: #fff; color: var(--blue); padding: 10px 13px; border-radius: 12px; font-weight: 900; cursor: pointer; }
     .cart-pill { border: 2px solid var(--blue); color: var(--blue); padding: 10px 14px; border-radius: 999px; font-weight: 800; background: #fff; }
     .wa { background: #25d366; color: #fff; padding: 11px 15px; border-radius: 999px; font-weight: 900; }
@@ -72,7 +72,7 @@
     .hero-card { background: #fff; color: var(--text); border-radius: 20px; padding: 18px; width: min(360px, 100%); transform: rotate(2deg); }
     .hero-card .big { font-size: 42px; font-weight: 900; color: var(--red); }
 
-    .btn { border: 0; border-radius: 12px; padding: 13px 16px; font-weight: 900; cursor: pointer; display: inline-flex; justify-content: center; align-items: center; gap: 8px; transition: .15s ease; }
+    .btn { border: 0; border-radius: 12px; padding: 13px 16px; font-weight: 900; cursor: pointer; display: inline-flex; justify-content: center; align-items: center; gap: 8px; transition: .15s ease; font-size: 15px; }
     .btn:hover { transform: translateY(-1px); filter: brightness(.98); }
     .btn-yellow { background: var(--yellow); color: var(--blue); }
     .btn-blue { background: var(--blue); color: #fff; }
@@ -168,7 +168,7 @@
       <div class="nav-actions">
         <button class="lang-btn" onclick="setLang('cs')" type="button">CZ</button>
         <button class="lang-btn" onclick="setLang('uk')" type="button">UA</button>
-        <a class="wa" href="https://wa.me/420606034397" target="_blank">WhatsApp</a>
+        <a class="wa" href="https://wa.me/420606034397" target="_blank" rel="noopener">WhatsApp</a>
         <a class="cart-pill" href="#checkout"><span data-key="cart">Košík</span>: <span id="cartCount">0</span></a>
       </div>
     </div>
@@ -210,81 +210,7 @@
         <div class="section-head">
           <h2 data-key="productsTitle">Vybrané hračky</h2>
         </div>
-        <div class="products" id="productGrid">
-
-  <article class="product">
-    <div class="photo">
-      <span class="badge" data-key="product1Badge">Top produkt</span>
-      <span class="stock" data-key="stock">Skladem</span>
-      <img src="images/product1.jpg" alt="LOL Tweens Mermaids panenka" />
-    </div>
-    <div class="product-body">
-      <h3 data-key="product1Name">LOL Tweens Mermaids panenka</h3>
-      <p class="desc" data-key="product1Desc">Stylová panenka LOL Tweens v mořském stylu. Ideální dárek pro děti.</p>
-      <div class="price">499 Kč</div>
-      <div class="delivery" data-key="deliveryProduct">Doručení 1–3 pracovní dny</div>
-      <div class="product-actions">
-        <button class="btn btn-blue" onclick="addToCart(1)" data-key="addToCart">Přidat do košíku</button>
-        <button class="btn btn-red" onclick="buyNow(1)" data-key="buyNow">Koupit hned</button>
-      </div>
-    </div>
-  </article>
-
-  <article class="product">
-    <div class="photo">
-      <span class="badge" data-key="product2Badge">Akce</span>
-      <span class="stock" data-key="stock">Skladem</span>
-      <img src="images/product2.jpg" alt="Hračka poník" />
-    </div>
-    <div class="product-body">
-      <h3 data-key="product2Name">Hračka poník</h3>
-      <p class="desc" data-key="product2Desc">Barevný poník pro děti. Skvělý pro hraní a rozvoj fantazie.</p>
-      <div class="price">299 Kč</div>
-      <div class="delivery" data-key="deliveryProduct">Doručení 1–3 pracovní dny</div>
-      <div class="product-actions">
-        <button class="btn btn-blue" onclick="addToCart(2)" data-key="addToCart">Přidat do košíku</button>
-        <button class="btn btn-red" onclick="buyNow(2)" data-key="buyNow">Koupit hned</button>
-      </div>
-    </div>
-  </article>
-
-  <article class="product">
-    <div class="photo">
-      <span class="badge" data-key="product3Badge">Skladem</span>
-      <span class="stock" data-key="stock">Skladem</span>
-      <img src="images/product3.jpg" alt="Panenka Moya Mia s miminkem" />
-    </div>
-    <div class="product-body">
-      <h3 data-key="product3Name">Panenka Moya Mia s miminkem</h3>
-      <p class="desc" data-key="product3Desc">Roztomilá panenka s miminkem. Perfektní pro malé děti.</p>
-      <div class="price">399 Kč</div>
-      <div class="delivery" data-key="deliveryProduct">Doručení 1–3 pracovní dny</div>
-      <div class="product-actions">
-        <button class="btn btn-blue" onclick="addToCart(3)" data-key="addToCart">Přidat do košíku</button>
-        <button class="btn btn-red" onclick="buyNow(3)" data-key="buyNow">Koupit hned</button>
-      </div>
-    </div>
-  </article>
-
-  <article class="product">
-    <div class="photo">
-      <span class="badge" data-key="product4Badge">Novinka</span>
-      <span class="stock" data-key="stock">Skladem</span>
-      <img src="images/product4.jpg" alt="Panenka pro děti" />
-    </div>
-    <div class="product-body">
-      <h3 data-key="product4Name">Panenka pro děti</h3>
-      <p class="desc" data-key="product4Desc">Klasická panenka pro každodenní hraní. Jednoduchý dárek za příjemnou cenu.</p>
-      <div class="price">349 Kč</div>
-      <div class="delivery" data-key="deliveryProduct">Doručení 1–3 pracovní dny</div>
-      <div class="product-actions">
-        <button class="btn btn-blue" onclick="addToCart(4)" data-key="addToCart">Přidat do košíku</button>
-        <button class="btn btn-red" onclick="buyNow(4)" data-key="buyNow">Koupit hned</button>
-      </div>
-    </div>
-  </article>
-
-</div>
+        <div class="products" id="productGrid"></div>
       </div>
     </section>
 
@@ -310,7 +236,7 @@
         </div>
 
         <div class="checkout-wrap">
-          <form id="orderForm" class="checkout" action="https://formspree.io/f/xqewjznk" method="POST" onsubmit="return handleOrderSubmit(event)">
+          <form id="orderForm" class="checkout" action="https://formspree.io/f/xqewjznk" method="POST">
             <input type="hidden" name="_subject" value="New order from Kids Market CZ">
             <input type="hidden" name="_captcha" value="false">
             <input type="hidden" id="orderDetails" name="order_details">
@@ -320,13 +246,28 @@
               <div class="field"><label for="name" data-key="nameLabel">Jméno</label><input id="name" name="customer_name" required placeholder="Jan Novák" /></div>
               <div class="field"><label for="phone" data-key="phoneLabel">Telefon</label><input id="phone" name="customer_phone" required placeholder="+420 777 123 456" /></div>
               <div class="field"><label for="email" data-key="emailLabel">Email</label><input id="email" name="customer_email" type="email" required placeholder="email@example.cz" /></div>
-              <div class="field"><label for="delivery" data-key="deliveryLabel">Doprava</label><select id="delivery" name="delivery_method" onchange="renderCart()"><option value="zasilkovna">Zásilkovna — 79 Kč</option><option value="kuryr">Kurýr — 119 Kč</option></select></div>
-              <div class="field"><label for="payment" data-key="paymentLabel">Platba</label><select id="payment" name="payment_method" onchange="renderCart()"><option value="dobirka">Dobírka — +39 Kč</option><option value="online">Online platba — placeholder</option></select></div>
+
+              <div class="field">
+                <label for="delivery" data-key="deliveryLabel">Doprava</label>
+                <select id="delivery" name="delivery_method">
+                  <option value="zasilkovna">Zásilkovna — 79 Kč</option>
+                  <option value="kuryr">Kurýr — 119 Kč</option>
+                </select>
+              </div>
+
+              <div class="field">
+                <label for="payment" data-key="paymentLabel">Platba</label>
+                <select id="payment" name="payment_method">
+                  <option value="dobirka">Dobírka — +39 Kč</option>
+                  <option value="online">Online platba — placeholder</option>
+                </select>
+              </div>
+
               <div class="field full"><label for="address" data-key="addressLabel">Adresa doručení / pobočka Zásilkovny</label><input id="address" name="delivery_address" required placeholder="Ulice, město, PSČ nebo pobočka Zásilkovny" /></div>
               <div class="field full"><label for="note" data-key="noteLabel">Poznámka</label><textarea id="note" name="customer_note" placeholder="Např. prosím o potvrzení dostupnosti, chci 2 kusy, preferuji Zásilkovnu..."></textarea></div>
             </div>
             <div class="notice" data-key="orderNotice">Po odeslání se otevře WhatsApp. Objednávku ručně potvrdíme.</div>
-            <button class="btn btn-green" type="submit" style="width:100%;" data-key="sendOrder">Odeslat objednávku přes WhatsApp</button>
+            <button id="submitBtn" class="btn btn-green" type="submit" style="width:100%;" data-key="sendOrder">Odeslat objednávku přes WhatsApp</button>
           </form>
 
           <aside class="summary">
@@ -337,7 +278,6 @@
             <div class="line"><span data-key="cod">Dobírka</span><strong id="cod">0 Kč</strong></div>
             <div class="line total"><span data-key="total">Celkem</span><span id="total">0 Kč</span></div>
             <a class="btn btn-blue" href="#products" style="width:100%; margin-top:12px;" data-key="addMore">Přidat další produkt</a>
-            <button class="btn btn-green" type="submit" form="orderForm" style="width:100%; margin-top:10px;" data-key="sendOrder">Odeslat objednávku přes WhatsApp</button>
           </aside>
         </div>
       </div>
@@ -391,6 +331,9 @@
         noteLabel: "Poznámka",
         orderNotice: "Po odeslání se otevře WhatsApp. Objednávku ručně potvrdíme.",
         sendOrder: "Odeslat objednávku přes WhatsApp",
+        sendingOrder: "Odesílám objednávku...",
+        orderSent: "Objednávka byla odeslána. WhatsApp se otevřel v novém okně.",
+        orderError: "WhatsApp se otevřel. Email se nemuselo podařit odeslat — zkontrolujte Formspree.",
         subtotal: "Mezisoučet",
         shipping: "Doprava",
         cod: "Dobírka",
@@ -458,6 +401,9 @@
         noteLabel: "Коментар",
         orderNotice: "Після відправки відкриється WhatsApp. Замовлення підтвердимо вручну.",
         sendOrder: "Відправити замовлення через WhatsApp",
+        sendingOrder: "Відправляю замовлення...",
+        orderSent: "Замовлення відправлено. WhatsApp відкрився в новому вікні.",
+        orderError: "WhatsApp відкрився. Email міг не відправитися — перевірте Formspree.",
         subtotal: "Сума товарів",
         shipping: "Доставка",
         cod: "Оплата при отриманні",
@@ -492,9 +438,6 @@
       }
     };
 
-    let currentLang = localStorage.getItem("lang") || "cs";
-    let cart = [];
-
     const products = [
       { id: 1, price: 499, image: "images/product1.jpg", nameKey: "product1Name", descKey: "product1Desc", badgeKey: "product1Badge" },
       { id: 2, price: 299, image: "images/product2.jpg", nameKey: "product2Name", descKey: "product2Desc", badgeKey: "product2Badge" },
@@ -502,23 +445,36 @@
       { id: 4, price: 349, image: "images/product4.jpg", nameKey: "product4Name", descKey: "product4Desc", badgeKey: "product4Badge" }
     ];
 
-    function t(key) { return dict[currentLang][key] || dict.cs[key] || key; }
-    function money(value) { return `${value} Kč`; }
+    const WHATSAPP_PHONE = "420606034397";
+    let currentLang = localStorage.getItem("lang") || "cs";
+    let cart = [];
+
+    function t(key) {
+      return (dict[currentLang] && dict[currentLang][key]) || dict.cs[key] || key;
+    }
+
+    function money(value) {
+      return `${value} Kč`;
+    }
 
     function setLang(lang) {
       currentLang = lang;
       localStorage.setItem("lang", lang);
       document.documentElement.lang = lang;
+
       document.querySelectorAll("[data-key]").forEach(el => {
         const key = el.getAttribute("data-key");
         el.textContent = t(key);
       });
+
       const delivery = document.getElementById("delivery");
       delivery.options[0].text = t("deliveryZasilkovna");
       delivery.options[1].text = t("deliveryKuryr");
+
       const payment = document.getElementById("payment");
       payment.options[0].text = t("paymentDobirka");
       payment.options[1].text = t("paymentOnline");
+
       renderProducts();
       renderCart();
     }
@@ -538,8 +494,8 @@
             <div class="price">${money(product.price)}</div>
             <div class="delivery">${t("deliveryProduct")}</div>
             <div class="product-actions">
-              <button class="btn btn-blue" onclick="addToCart(${product.id})">${t("addToCart")}</button>
-              <button class="btn btn-red" onclick="buyNow(${product.id})">${t("buyNow")}</button>
+              <button class="btn btn-blue" type="button" onclick="addToCart(${product.id})">${t("addToCart")}</button>
+              <button class="btn btn-red" type="button" onclick="buyNow(${product.id})">${t("buyNow")}</button>
             </div>
           </div>
         </article>
@@ -547,9 +503,16 @@
     }
 
     function addToCart(id) {
+      const product = products.find(p => p.id === id);
+      if (!product) return;
+
       const item = cart.find(i => i.id === id);
-      if (item) item.qty += 1;
-      else cart.push({ id, qty: 1 });
+      if (item) {
+        item.qty += 1;
+      } else {
+        cart.push({ id, qty: 1 });
+      }
+
       renderCart();
     }
 
@@ -561,21 +524,35 @@
     function changeQty(id, delta) {
       const item = cart.find(i => i.id === id);
       if (!item) return;
+
       item.qty += delta;
-      if (item.qty <= 0) cart = cart.filter(i => i.id !== id);
+      if (item.qty <= 0) {
+        cart = cart.filter(i => i.id !== id);
+      }
+
       renderCart();
     }
 
     function getTotals() {
       const subtotal = cart.reduce((sum, item) => {
         const product = products.find(p => p.id === item.id);
-        return sum + product.price * item.qty;
+        return product ? sum + product.price * item.qty : sum;
       }, 0);
+
       const delivery = document.getElementById("delivery").value;
       const payment = document.getElementById("payment").value;
       const shipping = subtotal === 0 ? 0 : subtotal >= 799 ? 0 : delivery === "kuryr" ? 119 : 79;
       const cod = subtotal === 0 ? 0 : payment === "dobirka" ? 39 : 0;
+
       return { subtotal, shipping, cod, total: subtotal + shipping + cod };
+    }
+
+    function getCartText() {
+      return cart.map(item => {
+        const product = products.find(p => p.id === item.id);
+        if (!product) return "";
+        return `- ${t(product.nameKey)}: ${item.qty} ks × ${product.price} Kč = ${item.qty * product.price} Kč`;
+      }).filter(Boolean).join("\n");
     }
 
     function renderCart() {
@@ -588,9 +565,13 @@
       } else {
         list.innerHTML = cart.map(item => {
           const product = products.find(p => p.id === item.id);
+          if (!product) return "";
           return `
             <div class="cart-item">
-              <div><strong>${t(product.nameKey)}</strong><br><small>${money(product.price)} × ${item.qty}</small></div>
+              <div>
+                <strong>${t(product.nameKey)}</strong><br>
+                <small>${money(product.price)} × ${item.qty} = ${money(product.price * item.qty)}</small>
+              </div>
               <div class="qty">
                 <button type="button" onclick="changeQty(${item.id}, -1)">−</button>
                 <strong>${item.qty}</strong>
@@ -608,46 +589,77 @@
       document.getElementById("total").textContent = money(totals.total);
     }
 
-    function handleOrderSubmit(event) {
-      if (cart.length === 0) {
-        alert(t("alertEmpty"));
-        return false;
-      }
-
+    function buildOrderText() {
       const name = document.getElementById("name").value.trim();
       const phone = document.getElementById("phone").value.trim();
       const email = document.getElementById("email").value.trim();
       const address = document.getElementById("address").value.trim();
       const note = document.getElementById("note").value.trim();
-      const delivery = document.getElementById("delivery").selectedOptions[0].text;
-      const payment = document.getElementById("payment").selectedOptions[0].text;
+      const deliveryText = document.getElementById("delivery").selectedOptions[0].text;
+      const paymentText = document.getElementById("payment").selectedOptions[0].text;
       const totals = getTotals();
+      const cartText = getCartText();
 
-      const cartText = cart.map(item => {
-        const product = products.find(p => p.id === item.id);
-        return `- ${t(product.nameKey)}: ${item.qty} ks × ${product.price} Kč`;
-      }).join("
-");
+      return `${t("orderTitle")} — Kids Market CZ\n\n${cartText}\n\n${t("subtotal")}: ${totals.subtotal} Kč\n${t("shipping")}: ${totals.shipping === 0 && totals.subtotal > 0 ? t("free") : totals.shipping + " Kč"}\n${t("cod")}: ${totals.cod} Kč\n${t("total")}: ${totals.total} Kč\n\n${t("deliveryLabel")}: ${deliveryText}\n${t("paymentLabel")}: ${paymentText}\n\n${t("nameLabel")}: ${name}\n${t("phoneLabel")}: ${phone}\nEmail: ${email}\n${t("addressLabel")}: ${address}\n${t("noteLabel")}: ${note || "-"}`;
+    }
 
-      document.getElementById("orderDetails").value = cartText;
+    async function handleOrderSubmit(event) {
+      event.preventDefault();
+
+      if (cart.length === 0) {
+        alert(t("alertEmpty"));
+        return;
+      }
+
+      const form = document.getElementById("orderForm");
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+      }
+
+      const totals = getTotals();
+      const orderText = buildOrderText();
+
+      document.getElementById("orderDetails").value = getCartText();
       document.getElementById("orderTotal").value = `${totals.total} Kč`;
 
-      const text = `${t("orderTitle")}
-${cartText}
+      window.open(`https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(orderText)}`, "_blank", "noopener");
 
-${t("total")}: ${totals.total} Kč
-${t("deliveryLabel")}: ${delivery}
-${t("paymentLabel")}: ${payment}
+      const submitBtn = document.getElementById("submitBtn");
+      const originalText = submitBtn.textContent;
+      submitBtn.textContent = t("sendingOrder");
+      submitBtn.disabled = true;
 
-${t("nameLabel")}: ${name}
-${t("phoneLabel")}: ${phone}
-Email: ${email}
-${t("addressLabel")}: ${address}
-${t("noteLabel")}: ${note || "-"}`;
-      window.open(`https://wa.me/420606034397?text=${encodeURIComponent(text)}`, "_blank");
+      try {
+        const formData = new FormData(form);
+        formData.set("order_details", orderText);
+        formData.set("order_total", `${totals.total} Kč`);
 
-      return true;
+        const response = await fetch(form.action, {
+          method: "POST",
+          body: formData,
+          headers: { "Accept": "application/json" }
+        });
+
+        if (response.ok) {
+          alert(t("orderSent"));
+          form.reset();
+          cart = [];
+          renderCart();
+        } else {
+          alert(t("orderError"));
+        }
+      } catch (error) {
+        alert(t("orderError"));
+      } finally {
+        submitBtn.textContent = originalText;
+        submitBtn.disabled = false;
+      }
     }
+
+    document.getElementById("delivery").addEventListener("change", renderCart);
+    document.getElementById("payment").addEventListener("change", renderCart);
+    document.getElementById("orderForm").addEventListener("submit", handleOrderSubmit);
 
     setLang(currentLang);
   </script>
