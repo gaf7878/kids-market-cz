@@ -236,34 +236,21 @@
         </div>
 
         <div class="checkout-wrap">
-          <form class="checkout" action="https://formspree.io/f/xqewjznk" method="POST">
-          <input type="hidden" name="_subject" value="New order from Kids Market CZ">
-          <input type="hidden" name="_captcha" value="false">
+          <form id="orderForm" class="checkout" action="https://formspree.io/f/xqewjznk" method="POST" onsubmit="return handleOrderSubmit(event)">
+            <input type="hidden" name="_subject" value="New order from Kids Market CZ">
+            <input type="hidden" name="_captcha" value="false">
+            <input type="hidden" id="orderDetails" name="order_details">
+            <input type="hidden" id="orderTotal" name="order_total">
 
-          <div class="form-grid">
-           <div class="field"><label for="name" data-key="nameLabel">Jméno</label><input id="name" name="customer_name" required placeholder="Jan Novák" /></div>
-           <div class="field"><label for="phone" data-key="phoneLabel">Telefon</label><input id="phone" name="customer_phone" required placeholder="+420 777 123 456" /></div>
-           <div class="field"><label for="email" data-key="emailLabel">Email</label><input id="email" name="customer_email" type="email" required placeholder="email@example.cz" /></div>
-
-           <div class="field">
-            <label for="delivery" data-key="deliveryLabel">Doprava</label>
-            <select id="delivery" name="delivery_method" onchange="renderCart()">
-             <option value="Zásilkovna — 79 Kč">Zásilkovna — 79 Kč</option>
-             <option value="Kurýr — 119 Kč">Kurýr — 119 Kč</option>
-            </select>
-           </div>
-
-           <div class="field">
-            <label for="payment" data-key="paymentLabel">Platba</label>
-            <select id="payment" name="payment_method" onchange="renderCart()">
-              <option value="Dobírka — +39 Kč">Dobírka — +39 Kč</option>
-              <option value="Online platba — placeholder">Online platba — placeholder</option>
-            </select>
-           </div>
-
-           <div class="field full"><label for="address" data-key="addressLabel">Adresa doručení / pobočka Zásilkovny</label><input id="address" name="delivery_address" required placeholder="Ulice, město, PSČ nebo pobočka Zásilkovny" /></div>
-           <div class="field full"><label for="note" data-key="noteLabel">Poznámka</label><textarea id="note" name="customer_note" placeholder="Např. prosím o potvrzení dostupnosti, chci 2 kusy, preferuji Zásilkovnu..."></textarea></div>
-          </div>
+            <div class="form-grid">
+              <div class="field"><label for="name" data-key="nameLabel">Jméno</label><input id="name" name="customer_name" required placeholder="Jan Novák" /></div>
+              <div class="field"><label for="phone" data-key="phoneLabel">Telefon</label><input id="phone" name="customer_phone" required placeholder="+420 777 123 456" /></div>
+              <div class="field"><label for="email" data-key="emailLabel">Email</label><input id="email" name="customer_email" type="email" required placeholder="email@example.cz" /></div>
+              <div class="field"><label for="delivery" data-key="deliveryLabel">Doprava</label><select id="delivery" name="delivery_method" onchange="renderCart()"><option value="zasilkovna">Zásilkovna — 79 Kč</option><option value="kuryr">Kurýr — 119 Kč</option></select></div>
+              <div class="field"><label for="payment" data-key="paymentLabel">Platba</label><select id="payment" name="payment_method" onchange="renderCart()"><option value="dobirka">Dobírka — +39 Kč</option><option value="online">Online platba — placeholder</option></select></div>
+              <div class="field full"><label for="address" data-key="addressLabel">Adresa doručení / pobočka Zásilkovny</label><input id="address" name="delivery_address" required placeholder="Ulice, město, PSČ nebo pobočka Zásilkovny" /></div>
+              <div class="field full"><label for="note" data-key="noteLabel">Poznámka</label><textarea id="note" name="customer_note" placeholder="Např. prosím o potvrzení dostupnosti, chci 2 kusy, preferuji Zásilkovnu..."></textarea></div>
+            </div>
             <div class="notice" data-key="orderNotice">Po odeslání se otevře WhatsApp. Objednávku ručně potvrdíme.</div>
             <button class="btn btn-green" type="submit" style="width:100%;" data-key="sendOrder">Odeslat objednávku přes WhatsApp</button>
           </form>
@@ -276,6 +263,7 @@
             <div class="line"><span data-key="cod">Dobírka</span><strong id="cod">0 Kč</strong></div>
             <div class="line total"><span data-key="total">Celkem</span><span id="total">0 Kč</span></div>
             <a class="btn btn-blue" href="#products" style="width:100%; margin-top:12px;" data-key="addMore">Přidat další produkt</a>
+            <button class="btn btn-green" type="submit" form="orderForm" style="width:100%; margin-top:10px;" data-key="sendOrder">Odeslat objednávku přes WhatsApp</button>
           </aside>
         </div>
       </div>
@@ -546,11 +534,10 @@
       document.getElementById("total").textContent = money(totals.total);
     }
 
-    function sendOrder(event) {
-      event.preventDefault();
+    function handleOrderSubmit(event) {
       if (cart.length === 0) {
         alert(t("alertEmpty"));
-        return;
+        return false;
       }
 
       const name = document.getElementById("name").value.trim();
@@ -565,10 +552,27 @@
       const cartText = cart.map(item => {
         const product = products.find(p => p.id === item.id);
         return `- ${t(product.nameKey)}: ${item.qty} ks × ${product.price} Kč`;
-      }).join("\n");
+      }).join("
+");
 
-      const text = `${t("orderTitle")}\n${cartText}\n\n${t("total")}: ${totals.total} Kč\n${t("deliveryLabel")}: ${delivery}\n${t("paymentLabel")}: ${payment}\n\n${t("nameLabel")}: ${name}\n${t("phoneLabel")}: ${phone}\nEmail: ${email}\n${t("addressLabel")}: ${address}\n${t("noteLabel")}: ${note || "-"}`;
-      window.open(`https://wa.me/420606034397?text=Dobrý den, mám zájem o objednávku z Kids Market CZ?text=${encodeURIComponent(text)}`, "_blank");
+      document.getElementById("orderDetails").value = cartText;
+      document.getElementById("orderTotal").value = `${totals.total} Kč`;
+
+      const text = `${t("orderTitle")}
+${cartText}
+
+${t("total")}: ${totals.total} Kč
+${t("deliveryLabel")}: ${delivery}
+${t("paymentLabel")}: ${payment}
+
+${t("nameLabel")}: ${name}
+${t("phoneLabel")}: ${phone}
+Email: ${email}
+${t("addressLabel")}: ${address}
+${t("noteLabel")}: ${note || "-"}`;
+      window.open(`https://wa.me/420606034397?text=${encodeURIComponent(text)}`, "_blank");
+
+      return true;
     }
 
     setLang(currentLang);
