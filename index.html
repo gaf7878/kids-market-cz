@@ -278,7 +278,15 @@
             <div class="line"><span data-key="cod">Dobírka</span><strong id="cod">0 Kč</strong></div>
             <div class="line total"><span data-key="total">Celkem</span><span id="total">0 Kč</span></div>
             <a class="btn btn-blue" href="#products" style="width:100%; margin-top:12px;" data-key="addMore">Přidat další produkt</a>
-          </aside>
+          <button 
+  class="btn btn-green" 
+  type="submit" 
+  form="orderForm" 
+  style="width:100%; margin-top:12px;" 
+  data-key="sendOrder">
+  Відправити замовлення через WhatsApp та Email
+</button>
+</aside>
         </div>
       </div>
     </section>
@@ -330,7 +338,7 @@
         addressLabel: "Adresa doručení / pobočka Zásilkovny",
         noteLabel: "Poznámka",
         orderNotice: "Po odeslání se otevře WhatsApp. Objednávku ručně potvrdíme.",
-        sendOrder: "Odeslat objednávku přes WhatsApp",
+        sendOrder: "Odeslat objednávku přes WhatsApp + Email",
         sendingOrder: "Odesílám objednávku...",
         orderSent: "Objednávka byla odeslána. WhatsApp se otevřel v novém okně.",
         orderError: "WhatsApp se otevřel. Email se nemuselo podařit odeslat — zkontrolujte Formspree.",
@@ -400,7 +408,7 @@
         addressLabel: "Адреса доставки / відділення Zásilkovna",
         noteLabel: "Коментар",
         orderNotice: "Після відправки відкриється WhatsApp. Замовлення підтвердимо вручну.",
-        sendOrder: "Відправити замовлення через WhatsApp",
+        sendOrder: "Відправити замовлення через WhatsApp та Email",
         sendingOrder: "Відправляю замовлення...",
         orderSent: "Замовлення відправлено. WhatsApp відкрився в новому вікні.",
         orderError: "WhatsApp відкрився. Email міг не відправитися — перевірте Formspree.",
