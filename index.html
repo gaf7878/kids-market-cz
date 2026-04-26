@@ -600,7 +600,30 @@
       const totals = getTotals();
       const cartText = getCartText();
 
-      return `${t("orderTitle")} — Kids Market CZ\n\n${cartText}\n\n${t("subtotal")}: ${totals.subtotal} Kč\n${t("shipping")}: ${totals.shipping === 0 && totals.subtotal > 0 ? t("free") : totals.shipping + " Kč"}\n${t("cod")}: ${totals.cod} Kč\n${t("total")}: ${totals.total} Kč\n\n${t("deliveryLabel")}: ${deliveryText}\n${t("paymentLabel")}: ${paymentText}\n\n${t("nameLabel")}: ${name}\n${t("phoneLabel")}: ${phone}\nEmail: ${email}\n${t("addressLabel")}: ${address}\n${t("noteLabel")}: ${note || "-"}`;
+      const shippingText = totals.shipping === 0 && totals.subtotal > 0
+        ? (currentLang === "uk" ? "Безкоштовно" : "Zdarma")
+        : totals.shipping + " Kč";
+
+      const deliveryMethodOnly = deliveryText.split(" — ")[0];
+      const deliveryMethodLabel = currentLang === "uk" ? "Спосіб доставки" : "Způsob dopravy";
+
+      return `${t("orderTitle")} — Kids Market CZ
+
+${cartText}
+
+${t("subtotal")}: ${totals.subtotal} Kč
+${t("shipping")}: ${shippingText}
+${t("cod")}: ${totals.cod} Kč
+${t("total")}: ${totals.total} Kč
+
+${deliveryMethodLabel}: ${deliveryMethodOnly}
+${t("paymentLabel")}: ${paymentText}
+
+${t("nameLabel")}: ${name}
+${t("phoneLabel")}: ${phone}
+Email: ${email}
+${t("addressLabel")}: ${address}
+${t("noteLabel")}: ${note || "-"}`;
     }
 
     async function handleOrderSubmit(event) {
